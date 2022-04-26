@@ -7,10 +7,12 @@ specifiers:
   '@types/react-dom': ^18.0.2
   '@vitejs/plugin-react': ^1.3.1
   axios: ^0.26.1
+  jwt-decode: ^3.1.2
   prop-types: 15.7.2
   react: ^17.0.2
   react-dom: ^17.0.2
   react-router-dom: ^6.3.0
+  recoil: ^0.7.2
   sass: ^1.50.1
   vite: ^2.9.5
 
@@ -18,10 +20,12 @@ dependencies:
   '@douyinfe/semi-icons': 2.9.0_react@17.0.2
   '@douyinfe/semi-ui': 2.9.0_4e663d555013a47373e6137af49db08d
   axios: 0.26.1
+  jwt-decode: 3.1.2
   prop-types: 15.7.2
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
   react-router-dom: 6.3.0_react-dom@17.0.2+react@17.0.2
+  recoil: 0.7.2_react-dom@17.0.2+react@17.0.2
   sass: 1.50.1
 
 devDependencies:
@@ -927,6 +931,10 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
+  /hamt_plus/1.0.2:
+    resolution: {integrity: sha512-t2JXKaehnMb9paaYA7J0BX8QQAY8lwfQ9Gjf4pg/mk4krt+cmwmU652HOoWonf+7+EQV97ARPMhhVgU1ra2GhA==}
+    dev: false
+
   /has-flag/3.0.0:
     resolution: {integrity: sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==}
     engines: {node: '>=4'}
@@ -1010,6 +1018,10 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
     dev: true
+
+  /jwt-decode/3.1.2:
+    resolution: {integrity: sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==}
+    dev: false
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
@@ -1200,6 +1212,23 @@ packages:
     engines: {node: '>=8.10.0'}
     dependencies:
       picomatch: 2.3.1
+    dev: false
+
+  /recoil/0.7.2_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-OT4pI7FOUHcIoRtjsL5Lqq+lFFzQfir4MIbUkqyJ3nqv3WfBP1pHepyurqTsK5gw+T+I2R8+uOD28yH+Lg5o4g==}
+    peerDependencies:
+      react: '>=16.13.1'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      hamt_plus: 1.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false
 
   /regenerator-runtime/0.13.9:

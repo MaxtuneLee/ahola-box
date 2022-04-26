@@ -3,18 +3,37 @@ import { Fragment, useState } from "react";
 import "./Login.sass";
 import Footer from "../../Component/Layout/Footer";
 import Header from "../../Component/Layout/Header";
-import { IconKey, IconKeyStroked, IconUserStroked } from "@douyinfe/semi-icons";
+import { IconKeyStroked, IconUserStroked } from "@douyinfe/semi-icons";
 import loginImg from "../../Images/login.png";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
 import LoginApi from "../../Api/Login";
 import { useEffect } from "react";
 import axios from "axios";
+import { Notification } from "@douyinfe/semi-ui";
+import { useRecoilState } from "recoil";
+import { userDataState } from "../../main";
 
 export default function Login() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [inputError, setInputError] = useState(false);
+
+  let position: any = 'top'
+  let theme: any = 'light'
+  let loginError = {
+    title: '😭️ 用户名或者密码错误',
+    content: '重新输入再试试吧',
+    duration: 4,
+    position: position,
+    theme: theme,
+  }
+  let loginSuccess = {
+    title: '😁 登录成功',
+    content: '即将跳转',
+    duration: 2,
+    position: position,
+    theme: theme,
+  }
 
   const { Title } = Typography;
   function handleNavigatetoRegister() {
@@ -27,15 +46,18 @@ export default function Login() {
     let password = values.password;
     LoginApi(username, password).then(res => {
       if (res.data.status === 200) {
+        Notification.success(loginSuccess);
         setTimeout(() => {
           localStorage.setItem("token", res.data.access_token);
           setLoading(false);
           navigate("/");
-        }, 2000)
+        }, 1000)
       }
     }).catch(res => {
       setInputError(true);
-      console.log(res)
+      if (res == 'Error: Request failed with status code 404') {
+        Notification.error(loginError)
+      }
       setLoading(false);
     })
   }
@@ -47,7 +69,6 @@ export default function Login() {
       console.log(res)
     })
   }, [])
-  console.log(inputError)
   return (
     <Fragment>
       {/* 我这边给Header和Footer单独写了组件，详细看 📁️Component/Layout */}
@@ -87,6 +108,7 @@ export default function Login() {
                     validateStatus={inputError ? "error" : "default"}
                     field="password"
                     required
+                    type="password"
                     size="large"
                     disabled={loading}
                   />
